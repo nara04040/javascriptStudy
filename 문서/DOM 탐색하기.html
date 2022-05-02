@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://ko.javascript.info/dom-navigation -->
+<html lang="ko" data-theme-enabled="1" data-theme="dark" class="working-hover"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style> [data-use-theme] { visibility: hidden } </style><script>window.currentUser = null;</script><script>window.rateShopToLocal = 1227.770257;</script><title itemprop="name">DOM 탐색하기</title><link href="./DOM 탐색하기_files/styles.e5d4ef75162a74d9fed1.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="./DOM 탐색하기_files/css" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="https://ko.javascript.info/img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://ko.javascript.info/dom-navigation"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="https://ko.javascript.info/img/favicon/favicon.png"><meta itemprop="image" content="https://ko.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="DOM 탐색하기"><meta property="og:image" content="https://ko.javascript.info/img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="DOM 탐색하기"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://ko.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="https://ko.javascript.info/dom-nodes"><link rel="next" href="https://ko.javascript.info/searching-elements-dom"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 32184394;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="./DOM 탐색하기_files/analytics.js" async=""></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="./DOM 탐색하기_files/watch.js" async=""></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="./DOM 탐색하기_files/init.882604e72cfc960a14f4.js"></script><script src="./DOM 탐색하기_files/head.2ed31bdc89768bbdd447.js" defer=""></script><link rel="stylesheet" href="./DOM 탐색하기_files/domtree.css">
+<script src="./DOM 탐색하기_files/d3.min.js"></script>
+<script src="./DOM 탐색하기_files/domtree.js"></script>
+<style>
+#travel-dom-comment {
+  font-style: italic;
+}
+#travel-dom-control ul {
+  margin: 6px 0;
+}
+</style><meta property="og:title" content="DOM 탐색하기"><meta property="og:type" content="article"><script src="./DOM 탐색하기_files/tutorial.785ad2f896c413ecaca0.js" defer="" data-manual="1"></script><script src="./DOM 탐색하기_files/footer.bc3eb55902426f626d92.js" defer=""></script></head><body class="" cz-shortcut-listen="true"><script>window.fontTest();</script><span class="font-test" style=""></span><div class="page-wrapper"><!--[if IE]><div style="color:red;text-align:center">Internet Explorer 미만의 브라우저는 지원하지 않습니다. 최신 버전 브라우저를 사용해주세요.</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "ko";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="notify-translate-tutorial-local">
+          <div class="notification__content">
+            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/ko.javascript.info#readme">translate the tutorial</a>.
+            Thank you!
+          </div>
+          <button class="notification__close" title="Close"></button>
+        </div><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler="">KO</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/dom-navigation"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/dom-navigation"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/dom-navigation"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/dom-navigation"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/dom-navigation"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="https://ko.javascript.info/dom-navigation"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/dom-navigation"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/dom-navigation"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://zh.javascript.info/dom-navigation"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">본 튜토리얼은 전 세계 사람들이 이용할 수 있는 오픈 소스 프로젝트입니다. <a href="https://github.com/javascript-tutorial/ko.javascript.info" rel="noopener noreferrer" target="_blank">프로젝트 페이지에 방문</a>하셔서 번역을 도와주세요.</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="https://ko.javascript.info/"><object type="image/svg+xml" class="sitetoolbar__logo sitetoolbar__logo_normal" data="./DOM 탐색하기_files/sitetoolbar__logo_en.svg" style="left: 0px; top: 0px; position: absolute;"></object><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="./DOM 탐색하기_files/sitetoolbar__logo_en.svg" width="200" alt="" role="presentation"><object type="image/svg+xml" class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" data="./DOM 탐색하기_files/sitetoolbar__logo_en-white.svg" style="left: 0px; top: 0px; position: absolute;"></object><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="./DOM 탐색하기_files/sitetoolbar__logo_en-white.svg" width="200" alt="" role="presentation" style="visibility: hidden;"><object type="image/svg+xml" class="sitetoolbar__logo sitetoolbar__logo_small" data="./DOM 탐색하기_files/sitetoolbar__logo_small_en.svg" style="left: 0px; top: 0px; position: absolute;"></object><img class="sitetoolbar__logo sitetoolbar__logo_small" src="./DOM 탐색하기_files/sitetoolbar__logo_small_en.svg" width="70" alt="" role="presentation"><object type="image/svg+xml" class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" data="./DOM 탐색하기_files/sitetoolbar__logo_small_en-white.svg" style="left: 0px; top: 0px; position: absolute;"></object><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="./DOM 탐색하기_files/sitetoolbar__logo_small_en-white.svg" width="70" alt="" role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="https://ko.javascript.info/ebook"><span class="buy-book-button__extra-text">구매</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="https://ko.javascript.info/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="javascript.info에서 검색하기" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">검색</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="https://ko.javascript.info/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="튜토리얼 내에서 검색" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">검색</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="https://ko.javascript.info/tutorial/map" data-action="tutorial-map"><span class="map__text">튜토리얼 지도</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">공유</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/dom-navigation">English</option><option value="https://es.javascript.info/dom-navigation">Español</option><option value="https://fr.javascript.info/dom-navigation">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/dom-navigation">Italiano</option><option value="https://ja.javascript.info/dom-navigation">日本語</option><option value="https://ko.javascript.info/dom-navigation" selected="">한국어</option><option value="https://learn.javascript.ru/dom-navigation">Русский</option><option value="https://tr.javascript.info/dom-navigation">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/dom-navigation">简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky="" value="3" max="32" data-tooltip="32개의 주제 중 3번째 주제"></progress></div><div class="page page_inner_padding page_sidebar-animation-on"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="https://ko.javascript.info/"><span class="breadcrumbs__hidden-text">튜토리얼</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="https://ko.javascript.info/ui"><span>브라우저: 문서, 이벤트, 인터페이스</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="https://ko.javascript.info/document"><span>문서</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"튜토리얼","item":"https://ko.javascript.info/"},{"@type":"ListItem","position":2,"name":"브라우저: 문서, 이벤트, 인터페이스","item":"https://ko.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"문서","item":"https://ko.javascript.info/document"}]}</script></ol><div class="updated-at" data-tooltip="최종 업데이트 15일 12월 2021"><div class="updated-at__content">15일 12월 2021</div></div></div><h1 class="main__header-title">DOM 탐색하기</h1></div></header><div class="content"><article class="formatted" itemscope="" itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="DOM 탐색하기"><div itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>DOM을 이용하면 요소와 요소의 콘텐츠에 무엇이든 할 수 있습니다. 하지만 무언가를 하기 전엔, 당연히 조작하고자 하는 DOM 객체에 접근하는 것이 선행되어야 합니다.</p>
+<p>DOM에 수행하는 모든 연산은 <code>document</code> 객체에서 시작합니다. <code>document</code> 객체는 DOM에 접근하기 위한 '진입점’이죠. 진입점을 통과하면 어떤 노드에도 접근할 수 있습니다.</p>
+<p>아래 그림은 DOM 노드 탐색이 어떤 관계를 통해 이루어지는지를 보여줍니다.</p>
+<figure><div class="image" style="width:420px">
+      <div class="image__ratio" style="padding-top:92.38095238095238%"></div>
+      <object type="image/svg+xml" data="./DOM 탐색하기_files/dom-links.svg" width="420" height="388" class="image__image" data-use-theme="" style="visibility: visible;">
+        <img src="./DOM 탐색하기_files/dom-links.svg" alt="" width="420" height="388">
+      </object>
+      </div></figure><p>화살표로 나타낸 관계에 대하여 좀 더 자세히 알아봅시다.</p>
+<h2><a class="main__anchor" name="ref-943" href="https://ko.javascript.info/dom-navigation#ref-943">트리 상단의 documentElement와 body</a></h2><p>DOM 트리 상단의 노드들은 <code>document</code>가 제공하는 프로퍼티를 사용해 접근할 수 있습니다.</p>
+<dl>
+<dt><code>&lt;html&gt;</code> = <code>document.documentElement</code></dt>
+<dd><code>document</code>를 제외하고 DOM 트리 꼭대기에 있는 문서 노드는 <code>&lt;html&gt;</code> 태그에 해당하는 <code>document.documentElement</code>입니다.</dd>
+<dt><code>&lt;body&gt;</code> = <code>document.body</code></dt>
+<dd><code>document.body</code>는 <code>&lt;body&gt;</code> 요소에 해당하는 DOM 노드로, 자주 쓰이는 노드 중 하나입니다.</dd>
+<dt><code>&lt;head&gt;</code> = <code>document.head</code></dt>
+<dd><code>&lt;head&gt;</code> 태그는 <code>document.head</code>로 접근할 수 있습니다.</dd>
+</dl>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>document.body</code>가 <code>null</code>일 수도 있으니 주의하세요.</span></div>
+            <div class="important__content"><p>스크립트를 읽는 도중에 존재하지 않는 요소는 스크립트에서 접근할 수 없습니다.</p>
+<p>브라우저가 아직 <code>document.body</code>를 읽지 않았기 때문에 <code>&lt;head&gt;</code> 안에 있는 스크립트에선 <code>document.body</code>에 접근하지 못하죠.</p>
+<p>따라서 아래 예시에서 첫 번째 <code>alert</code> 창엔 <code>null</code>이 출력됩니다.</p>
+<div id="gasmdpv0ac" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<em class="block-highlight">    <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"HEAD: "</span> <span class="token operator">+</span> document<span class="token punctuation">.</span>body <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// null, 아직 &lt;body&gt;에 해당하는 노드가 생성되지 않았음</span></em>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"BODY: "</span> <span class="token operator">+</span> document<span class="token punctuation">.</span>body <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// HTMLBodyElement, 지금은 노드가 존재하므로 읽을 수 있음</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">DOM의 나라에서 <code>null</code>은 '존재하지 않음’을 의미합니다.</span></div>
+            <div class="important__content"><p>DOM에서 <code>null</code> 값은 '존재하지 않음’이나 '해당하는 노드가 없음’을 의미합니다.</p>
+</div></div>
+<h2><a class="main__anchor" name="ref-944" href="https://ko.javascript.info/dom-navigation#ref-944">childNodes, firstChild, lastChild로 자식 노드 탐색하기</a></h2><p>앞으로 사용할 두 가지 용어를 먼저 정의하고 설명을 이어나가도록 하겠습니다.</p>
+<ul>
+<li><strong>자식 노드(child node, children)</strong> 는 바로 아래의 자식 요소를 나타냅니다. 자식 노드는 부모 노드의 바로 아래에서 중첩 관계를 만듭니다. <code>&lt;head&gt;</code>와 <code>&lt;body&gt;</code>는 <code>&lt;html&gt;</code>요소의 자식 노드입니다.</li>
+<li><strong>후손 노드(descendants)</strong> 는 중첩 관계에 있는 모든 요소를 의미합니다. 자식 노드, 자식 노드의 모든 자식 노드 등이 후손 노드가 됩니다.</li>
+</ul>
+<p>아래 예시에서 <code>&lt;body&gt;</code>는 <code>&lt;div&gt;</code>와 <code>&lt;ul&gt;</code>, 몇 개의 빈 텍스트 노드를 자식 노드로 갖습니다.</p>
+<div id="y6jfh7rmtr" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>시작<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">&gt;</span></span>항목<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>&lt;div&gt;</code>나 <code>&lt;ul&gt;</code>같은 <code>&lt;body&gt;</code>의 자식 요소뿐만 아니라 <code>&lt;ul&gt;</code>의 자식 노드인 <code>&lt;li&gt;</code>와 <code>&lt;b&gt;</code>같이 더 깊은 곳에 있는 중첩 요소도 <code>&lt;body&gt;</code>의 후손 노드가 됩니다.</p>
+<p><strong><code>childNodes</code> 컬렉션은 텍스트 노드를 포함한 모든 자식 노드를 담고 있습니다.</strong></p>
+<p>아래 예시를 실행하면 <code>document.body</code>의 자식 노드가 출력됩니다.</p>
+<div id="97y05wf72j" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:13}]" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>시작<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>항목<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>끝<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<em class="block-highlight">    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Text, DIV, Text, UL, ... , SCRIPT</span>
+    <span class="token punctuation">}</span></em>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  ...추가 내용...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>예시를 실행하면 흥미로운 점이 하나 발견됩니다. 마지막에 <code>&lt;script&gt;</code>가 출력되죠. <code>&lt;script&gt;</code> 아래 더 많은 내용(…추가 내용…)이 있지만, 스크립트 실행 시점엔 브라우저가 추가 내용은 읽지 못한 상태이기 때문에 스크립트 역시 추가 내용을 보지 못해서 이런 결과가 나타났습니다.</p>
+<p><strong><code>firstChild</code>와 <code>lastChild</code> 프로퍼티를 이용하면 첫 번째, 마지막 자식 노드에 빠르게 접근할 수 있습니다.</strong></p>
+<p>이 프로퍼티들은 단축키 같은 역할을 합니다. 자식 노드가 존재하면 아래 비교문은 항상 참이 됩니다.</p>
+<div id="nfm3cldl9p" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span></span><code class=" language-javascript">elem<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">===</span> elem<span class="token punctuation">.</span>firstChild
+elem<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span>elem<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> elem<span class="token punctuation">.</span>lastChild</code></pre>
+        </div>
+      </div>
+      
+      </div><p>참고로 자식 노드의 존재 여부를 검사할 땐 함수 <code>elem.hasChildNodes()</code>를 사용할 수도 있습니다.</p>
+<h3><a class="main__anchor" name="ref-945" href="https://ko.javascript.info/dom-navigation#ref-945">DOM 컬렉션</a></h3><p>위에서 살펴본 <code>childNodes</code>는 마치 배열 같아 보입니다. 하지만 <code>childNodes</code>는 배열이 아닌 반복 가능한(iterable, 이터러블) 유사 배열 객체인 <em>컬렉션(collection)</em> 입니다.</p>
+<p><code>childNodes</code>는 컬렉션이기 때문에 아래와 같은 특징을 가집니다.</p>
+<ol>
+<li><code>for..of</code>를 사용할 수 있습니다.</li>
+</ol>
+<div id="esankzre13" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span></span><code class=" language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> node <span class="token keyword">of</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 컬렉션 내의 모든 노드를 보여줍니다.</span>
+<span class="token punctuation">}</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>이터러블이기 때문에 <code>Symbol.iterator</code> 프로퍼티가 구현되어 있어서 <code>for..of</code>를 사용하는 것이 가능하죠.</p>
+<ol start="2">
+<li>배열이 아니기 때문에 배열 메서드를 쓸 수 없습니다.</li>
+</ol>
+<div id="a8ym86qp2d" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="실행" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span></span><code class=" language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span>filter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined (filter 메서드가 없습니다.)</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>첫 번째 특징은 장점으로 작용합니다. 두 번째 특징은 썩 좋지는 않지만 <code>Array.from</code>을 사용하면 ‘진짜’ 배열을 만들 수 있기 때문에 참을 만합니다. 컬렉션에 배열 메서드를 사용하고 싶다면 <code>Array.from</code>을 적용합시다.</p>
+<div id="mil3ratyen" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="실행" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span></span><code class=" language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">)</span><span class="token punctuation">.</span>filter <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// function</span></code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">DOM 컬렉션은 읽는 것만 가능합니다.</span></div>
+            <div class="important__content"><p>DOM 컬렉션을 비롯해 이번 챕터에서 설명하는 <em>모든</em> 탐색용 프로퍼티는 읽기 전용입니다.</p>
+<p><code>childNodes[i] = ...</code>를 이용해 자식 노드를 교체하는 게 불가능하죠.</p>
+<p>DOM을 변경하려면 다른 메서드가 필요합니다. 다음 챕터에서 이 메서드에 대해 살펴보겠습니다.</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">DOM 컬렉션은 살아있습니다.</span></div>
+            <div class="important__content"><p>몇몇 예외사항을 제외하고 거의 모든 DOM 컬렉션은 <em>살아있습니다</em>. DOM의 현재 상태를 반영한다는 말이죠.</p>
+<p><code>elem.childNodes</code>를 참조하고 있는 도중에 DOM에 새로운 노드가 추가되거나 삭제되면, 변경사항이 컬렉션에도 자동으로 반영됩니다.</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">컬렉션에 <code>for..in</code> 반복문을 사용하지 마세요,</span></div>
+            <div class="important__content"><p>컬렉션은 <code>for..of</code>를 이용해 순회할 수 있습니다. 그런데 가끔 <code>for..in</code>을 사용하려는 사람들이 있죠.</p>
+<p><code>for..in</code>은 절대 사용하지 마세요. <code>for..in</code> 반복문은 객체의 모든 열거 가능한 프로퍼티를 순회합니다. 컬렉션엔 거의 사용되지 않는 ‘추가’ 프로퍼티가 있는데, 이 프로퍼티까지 순회 대상에 포함하길 원하지 않으실 거니까요.</p>
+<div id="zxqai0v2na" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token comment">// 0, 1, length, item, values 등 불필요한 프로퍼티까지도 출력됩니다.</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> prop <span class="token keyword">in</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">)</span> <span class="token function">alert</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="ref-946" href="https://ko.javascript.info/dom-navigation#ref-946">형제와 부모 노드</a></h2><p>같은 부모를 가진 노드는 <em>형제(sibling) 노드</em> 라고 부릅니다.</p>
+<p><code>&lt;head&gt;</code>와 <code>&lt;body&gt;</code>는 대표적인 형제 노드입니다.</p>
+<div id="10eqw1r8dp" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>&lt;body&gt;</code>는 <code>&lt;head&gt;</code>의 ‘다음(next)’ 혹은 '우측(right)'에 있는 형제 노드입니다.</li>
+<li><code>&lt;head&gt;</code>는 <code>&lt;body&gt;</code>의 ‘이전(previous)’ 혹은 '좌측(left)'에 있는 형제 노드입니다.</li>
+</ul>
+<p>다음 형제 노드에 대한 정보는 <code>nextSibling</code>, 이전 형제 노드에 대한 정보는 <code>previousSibling</code> 프로퍼티에서 찾을 수 있습니다.</p>
+<p>부모 노드에 대한 정보는 <code>parentNode</code> 프로퍼티를 이용해 참조할 수 있습니다.</p>
+<p>예시:</p>
+<div id="3ck2eqdqn3" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="실행" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-javascript"><span class="token comment">// &lt;body&gt;의 부모 노드는 &lt;html&gt;입니다</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>parentNode <span class="token operator">===</span> document<span class="token punctuation">.</span>documentElement <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// &lt;head&gt;의 다음 형제 노드는 &lt;body&gt;입니다.</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>head<span class="token punctuation">.</span>nextSibling <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// HTMLBodyElement</span>
+
+<span class="token comment">// &lt;body&gt;의 이전 형제 노드는 &lt;head&gt;입니다.</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>previousSibling <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// HTMLHeadElement</span></code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ref-947" href="https://ko.javascript.info/dom-navigation#ref-947">요소 간 이동</a></h2><p>지금까지 언급한 탐색 관련 프로퍼티는 <em>모든</em> 종류의 노드를 참조합니다. <code>childNodes</code>를 이용하면 텍스트 노드, 요소 노드, 심지어 주석 노드까지 참조할 수 있죠.</p>
+<p>하지만 실무에서 텍스트 노드나 주석 노드는 잘 다루지 않습니다. 웹 페이지를 구성하는 태그의 분신인 요소 노드를 조작하는 작업이 대다수이죠.</p>
+<p>이런 실제 상황을 토대로 DOM <em>요소 노드</em> 탐색이 어떻게 이루어지는지 알아봅시다.</p>
+<figure><div class="image" style="width:440px">
+      <div class="image__ratio" style="padding-top:71.81818181818181%"></div>
+      <object type="image/svg+xml" data="./DOM 탐색하기_files/dom-links-elements.svg" width="440" height="316" class="image__image" data-use-theme="" style="visibility: visible;">
+        <img src="./DOM 탐색하기_files/dom-links-elements.svg" alt="" width="440" height="316">
+      </object>
+      </div></figure><p>위 그림 속 관계는 챕터 앞쪽에서 다뤘던 관계와 유사해 보입니다. <code>Element</code>라는 단어가 추가된 점만 다르네요.</p>
+<ul>
+<li><code>children</code> 프로퍼티는 해당 요소의 자식 노드 중 요소 노드만을 가리킵니다.</li>
+<li><code>firstElementChild</code>와 <code>lastElementChild</code> 프로퍼티는 각각 첫 번째 자식 요소 노드와 마지막 자식 요소 노드를 가리킵니다.</li>
+<li><code>previousElementSibling</code>과 <code>nextElementSibling</code>은 형제 요소 노드를 가리킵니다.</li>
+<li><code>parentElement</code> 는 부모 요소 노드를 가리킵니다.</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">부모가 요소가 <em>아니라면</em> <code>parentElement</code>는 어떻게 되나요?</span></div>
+            <div class="important__content"><p><code>parentElement</code> 프로퍼티는 부모 '요소 노드’를 반환하는 반면 <code>parentNode</code> 프로퍼티는 '종류에 상관없이 부모 노드’를 반환합니다. 대개 두 프로퍼티는 같은 노드를 반환합니다.</p>
+<p>그런데 <code>document.documentElement</code>아래와 같은 상황에서는 다른 노드를 반환합니다.</p>
+<div id="4jfv56j0to" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="실행" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span></span><code class=" language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>parentNode <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// document</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>parentElement <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// null</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>반환 값이 다른 이유는 <code>&lt;html&gt;</code>에 해당하는 <code>document.documentElement</code>의 부모는 <code>document</code>인데, <code>document</code> 노드는 요소 노드가 아니기 때문입니다. 따라서 위 예시에서 <code>parentNode</code>는 의도한 대로 <code>document</code> 노드를 반환하지만, <code>parentElement</code>는 <code>null</code>을 반환합니다.</p>
+<p>이런 사소한 차이는 임의의 요소 노드 <code>elem</code>에서 시작해 <code>&lt;html&gt;</code>까지 거슬러 올라가고 싶은데, <code>document</code>까지는 가고 싶지 않을 때 유용하게 활용할 수 있습니다.</p>
+<div id="w4tqqauzq4" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span></span><code class=" language-javascript"><span class="token keyword">while</span><span class="token punctuation">(</span>elem <span class="token operator">=</span> elem<span class="token punctuation">.</span>parentElement<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &lt;html&gt;까지 거슬러 올라갑니다.</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span> elem <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>앞서 보았던 예시에서 <code>childNodes</code>를 <code>children</code>으로 대체해봅시다. 요소 노드만 출력되는 것을 확인할 수 있습니다.</p>
+<div id="ehsig2af6o" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:13}]" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>시작<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>항목<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>끝<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<em class="block-highlight">    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// DIV, UL, DIV, SCRIPT</span>
+    <span class="token punctuation">}</span></em>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="dom-navigation-tables" href="https://ko.javascript.info/dom-navigation#dom-navigation-tables">테이블 탐색하기</a></h2><p>지금까지 DOM 탐색 기본 프로퍼티를 알아보았습니다.</p>
+<p>그런데 일부 DOM 요소 노드는 편의를 위해 기본 프로퍼티 외에 추가적인 프로퍼티를 지원합니다.</p>
+<p>테이블이 가장 대표적입니다. 좀 더 자세히 알아봅시다.</p>
+<p><strong><code>&lt;table&gt;</code></strong> 요소는 기본 프로퍼티 이외에 다음과 같은 프로퍼티를 지원합니다.</p>
+<ul>
+<li><code>table.rows</code>는 <code>&lt;tr&gt;</code>요소를 담은 컬렉션을 참조합니다.</li>
+<li><code>table.caption/tHead/tFoot</code>은 각각 <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code> 요소를 참조합니다.</li>
+<li><code>table.tBodies</code>는 <code>&lt;tbody&gt;</code> 요소를 담은 컬렉션을 참조합니다. 표준에 따르면, 테이블 내에 여러 개의 <code>&lt;tbody&gt;</code>가 존재하는 게 가능한데, 최소한 하나는 무조건 있어야 합니다. HTML 문서에는 <code>&lt;tbody&gt;</code>가 없더라도 브라우저는 <code>&lt;tbody&gt;</code> 노드를 DOM에 자동으로 추가합니다.</li>
+</ul>
+<p><strong><code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code>, <code>&lt;tbody&gt;</code></strong> 요소는 <code>rows</code> 프로퍼티를 지원합니다.</p>
+<ul>
+<li><code>tbody.rows</code>는 tbody 내 <code>&lt;tr&gt;</code> 요소 컬렉션을 참조합니다.</li>
+</ul>
+<p><strong><code>&lt;tr&gt;</code> 요소는 다음 프로퍼티를 지원합니다.</strong></p>
+<ul>
+<li><code>tr.cells</code>는 주어진 <code>&lt;tr&gt;</code> 안의 모든 <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code>을 담은 컬렉션을 반환합니다.</li>
+<li><code>tr.sectionRowIndex</code>는 주어진 <code>&lt;tr&gt;</code>이 <code>&lt;thead&gt;/&lt;tbody&gt;/&lt;tfoot&gt;</code>안쪽에서 몇 번째 줄에 위치하는지를 나타내는 인덱스를 반환합니다.</li>
+<li><code>tr.rowIndex</code>는 <code>&lt;table&gt;</code>내에서 해당 <code>&lt;tr&gt;</code>이 몇 번째 줄인 지를 나타내는 숫자를 반환합니다.</li>
+</ul>
+<p><strong><code>&lt;td&gt;</code>와 <code>&lt;th&gt;</code> 요소는 다음 프로퍼티를 지원합니다.</strong></p>
+<ul>
+<li><code>td.cellIndex</code>는 <code>&lt;td&gt;</code>나 <code>&lt;th&gt;</code>가 속한 <code>&lt;tr&gt;</code>에서 해당 셀이 몇 번째인지를 나타내는 숫자를 반환합니다.</li>
+</ul>
+<p>용례:</p>
+<div id="h5674tdee" data-trusted="1" class="code-example" data-demo-height="100" data-highlight="[{&quot;start&quot;:11,&quot;cols&quot;:[{&quot;start&quot;:17,&quot;end&quot;:33}]}]" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="보기" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="https://ko.javascript.info/dom-navigation#" title="샌드박스에서 열기" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>일<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>이<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>삼<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>사<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token comment">// '이'가 적힌 td를 가져옴(첫 번째 줄, 두 번째 칸)</span>
+  <span class="token keyword">let</span> td <span class="token operator">=</span> table<span class="token punctuation">.</span><em class="inline-highlight">rows<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cells<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></em></span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span> <span class="token comment">// 강조</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>표에 관련한 공식 명세서는 <a href="https://html.spec.whatwg.org/multipage/tables.html">tabular data</a>에서 찾아볼 수 있습니다.</p>
+<p>테이블과 마찬가지로, HTML 폼(form)에만 쓸 수 있는 탐색 프로퍼티도 있습니다. 폼을 배우면서 이 프로퍼티에 대해서도 살펴보도록 하겠습니다.</p>
+<h2><a class="main__anchor" name="ref-948" href="https://ko.javascript.info/dom-navigation#ref-948">요약</a></h2><p>탐색 프로퍼티를 사용하면 이웃 노드로 바로 이동할 수 있습니다.</p>
+<p>탐색 프로퍼티는 크게 두 개의 집합으로 나뉩니다.</p>
+<ul>
+<li>모든 노드에 적용 가능한 <code>parentNode</code>, <code>childNodes</code>, <code>firstChild</code>, <code>lastChild</code>, <code>previousSibling</code>, <code>nextSibling</code></li>
+<li>요소 노드에만 적용 가능한 <code>parentElement</code>, <code>children</code>, <code>firstElementChild</code>, <code>lastElementChild</code>, <code>previousElementSibling</code>, <code>nextElementSibling</code></li>
+</ul>
+<p>테이블과 같은 몇몇 DOM 요소는 추가 프로퍼티와 콘텐츠에 접속할 수 있게 해주는 컬렉션을 제공합니다.</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="https://ko.javascript.info/dom-navigation#tasks">과제</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="https://ko.javascript.info/dom-navigation#ref-949" name="ref-949">자식 DOM</a></h3><a class="task__open-link" href="https://ko.javascript.info/task/dom-children" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="과제의 중요도에 따라 1부터 5까지의 점수가 매겨졌습니다.">중요도: 5</span></div><div class="task__content"><div class="task__formatted"><p>아래 페이지를 살펴봅시다.</p>
+<div id="aw9qnp4nx4" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-markup" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>사용자:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>John<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Pete<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>아래 DOM 노드에 접근할 방법을 최소 한 가지 이상씩 생각해보세요.</p>
+<ul>
+<li><code>&lt;div&gt;</code> DOM 노드</li>
+<li><code>&lt;ul&gt;</code> DOM 노드</li>
+<li>두 번째 <code>&lt;li&gt;</code> (Pete)</li>
+</ul>
+</div><button class="task__solution" type="button">해답</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>방법은 다양합니다.</p>
+<p><code>&lt;div&gt;</code> DOM 노드:</p>
+<div id="vwkovdxo6l" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span><code class=" language-javascript">document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>firstElementChild
+<span class="token comment">// 또는</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment">// 또는 (첫 번째 노드는 공백이므로 두 번째 노드를 가져옴)</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>&lt;ul&gt;</code> DOM 노드:</p>
+<div id="q25q5gfc08" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span><span></span></span><code class=" language-javascript">document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>lastElementChild
+<span class="token comment">// 또는</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>두 번째 <code>&lt;li&gt;</code> (Pete):</p>
+<div id="e2pbwv0nti" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span></span><code class=" language-javascript"><span class="token comment">// &lt;ul&gt;을 가져오고, &lt;ul&gt;의 마지막 자식 요소를 가져옴</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>lastElementChild<span class="token punctuation">.</span>lastElementChild</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="종료"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="https://ko.javascript.info/dom-navigation#ref-950" name="ref-950">형제 노드에 관한 질문</a></h3><a class="task__open-link" href="https://ko.javascript.info/task/navigation-links-which-null" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="과제의 중요도에 따라 1부터 5까지의 점수가 매겨졌습니다.">중요도: 5</span></div><div class="task__content"><div class="task__formatted"><p>임의의 DOM 요소 노드 <code>elem</code>이 있다고 가정해봅시다.</p>
+<ul>
+<li><code>elem.lastChild.nextSibling</code>은 항상 <code>null</code>일까요?</li>
+<li><code>elem.children[0].previousSibling</code>은 항상 <code>null</code>일까요?</li>
+</ul>
+</div><button class="task__solution" type="button">해답</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><ol>
+<li>네 맞습니다. <code>elem.lastChild</code>는 항상 마지막 노드이기 때문에 <code>nextSibling</code>이 없습니다.</li>
+<li>아닙니다. <code>elem.children[0]</code>은 <em>요소 노드 중</em> 첫 번째 자식 노드를 나타내기 때문입니다. 이 앞에 요소 노드가 아닌 다른 노드가 올 수도 있습니다. <code>previousSibling</code>은 텍스트 노드가 될 수도 있습니다.</li>
+</ol>
+<p>주의 사항: 두 경우 모두 자식 노드가 없는 경우 에러가 발생합니다.</p>
+<p>자식 노드가 없으면 <code>elem.lastChild</code>은 <code>null</code>이 되기 때문에 <code>elem.lastChild.nextSibling</code>에 접근할 수 없습니다. 그리고 컬렉션 <code>elem.children</code>은 빈 배열 <code>[]</code>같이 빈 상태가 됩니다.</p>
+</div></div><button class="close-button task__answer-close" type="button" title="종료"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="https://ko.javascript.info/dom-navigation#ref-951" name="ref-951">모든 대각선 셀 선택하기</a></h3><a class="task__open-link" href="https://ko.javascript.info/task/select-diagonal-cells" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="과제의 중요도에 따라 1부터 5까지의 점수가 매겨졌습니다.">중요도: 5</span></div><div class="task__content"><div class="task__formatted"><p>테이블의 모든 대각선 셀을 빨간색으로 칠하는 코드를 작성해보세요.</p>
+<p><code>&lt;table&gt;</code>에서 모든 대각선 <code>&lt;td&gt;</code>를 가져와 아래 코드를 이용해 칠해야 합니다.</p>
+<div id="uqf8hv8u8t" data-trusted="1" class="code-example" data-prism-highlighted="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers  language-javascript" tabindex="0"><span class="line-numbers-rows"><span></span><span></span></span><code class=" language-javascript"><span class="token comment">// td는 테이블 셀에 대한 참조가 되어야 합니다.</span>
+td<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span></code></pre>
+        </div>
+      </div>
+      
+      </div><p>결과는 아래와 같습니다.</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="./DOM 탐색하기_files/saved_resource.html"></iframe>
+  </div><p><a href="https://plnkr.co/edit/aqCGMJnpfkoazXMv?p=preview" target="_blank" data-plunk-id="aqCGMJnpfkoazXMv">샌드박스를 열어 정답을 작성해보세요.</a></p></div><button class="task__solution" type="button">해답</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><code>rows</code>와 <code>cells</code> 프로퍼티를 이용해 테이블의 대각선 셀에 접근합니다.</p>
+<p><a href="https://plnkr.co/edit/z4zT9zp7dGDd1Ze9?p=preview" target="_blank" data-plunk-id="z4zT9zp7dGDd1Ze9">샌드박스를 열어 정답을 확인해보세요.</a></p></div></div><button class="close-button task__answer-close" type="button" title="종료"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="https://ko.javascript.info/dom-nodes" data-tooltip="DOM 트리"><span class="page__nav-text"><span class="page__nav-text-shortcut">Ctrl + <span class="page__nav-text-arr">←</span></span></span><span class="page__nav-text-alternate">이전 주제</span></a><a class="page__nav page__nav_next" href="https://ko.javascript.info/searching-elements-dom" data-tooltip="getElement*, querySelector*로 요소 검색하기"><span class="page__nav-text"><span class="page__nav-text-shortcut">Ctrl + <span class="page__nav-text-arr">→</span></span></span><span class="page__nav-text-alternate">다음 주제</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">공유</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="https://ko.javascript.info/tutorial/map" data-action="tutorial-map"><span class="map__text">튜토리얼 지도</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="https://ko.javascript.info/dom-navigation#comments" name="comments">댓글</a></h2><div class="comments__read-before"><span class="comments__read-before-link">댓글을 달기 전에 마우스를 올렸을 때 나타나는 글을 먼저 읽어주세요.</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>추가 코멘트, 질문 및 답변을 자유롭게 남겨주세요. 개선해야 할 것이 있다면 댓글 대신 <a href="https://github.com/javascript-tutorial/ko.javascript.info/issues/new">이슈를 만들어주세요</a>.</li><li>잘 이해되지 않는 부분은 구체적으로 언급해주세요.</li><li>댓글에 한 줄짜리 코드를 삽입하고 싶다면 <code>&lt;code&gt;</code> 태그를, 여러 줄로 구성된 코드를 삽입하고 싶다면 <code>&lt;pre&gt;</code> 태그를 이용하세요. 10줄 이상의 코드는 <a href="http://plnkr.co/edit/?p=preview">plnkr</a>, <a href="http://jsbin.com/">JSBin</a>, <a href="http://codepen.io/">codepen</a> 등의 샌드박스를 사용하세요.</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/ko.javascript.info\/dom-navigation","identifier":"\/dom-navigation"}); };</script><script>var disqus_shortname = "ko-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer" style="top: 63px;"><button class="sidebar__toggle" data-sidebar-toggle=""></button><a class="map" href="https://ko.javascript.info/tutorial/map" data-action="tutorial-map" data-tooltip="튜토리얼 지도"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">챕터</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/document">문서</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">주제 탐색</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#ref-943">트리 상단의 documentElement와 body</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#ref-944">childNodes, firstChild, lastChild로 자식 노드 탐색하기</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#ref-946">형제와 부모 노드</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#ref-947">요소 간 이동</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#dom-navigation-tables">테이블 탐색하기</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#ref-948">요약</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#tasks">과제 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="https://ko.javascript.info/dom-navigation#comments">댓글</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">공유</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fko.javascript.info%2Fdom-navigation" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/ko.javascript.info/blob/master/2-ui/1-document/03-dom-navigation" rel="nofollow">GitHub에서 수정하기</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="https://ko.javascript.info/about">프로젝트 설명</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="https://ko.javascript.info/about#contact-us">연락처</a></li></ul></div></body></html>
