@@ -1,1 +1,2 @@
-console.log(2 + true);
+console.log("아부지! 정답을 알려줘!");
+야야야~~야야야야야~
